@@ -1,0 +1,46 @@
+.o_all_reports_dashboard {
+    background-color: #f8f9fa;
+
+    .o_kpi_card {
+        transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        border-left: 4px solid var(--bs-primary);
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
+        }
+
+        &.kpi-sales {
+            border-left-color: #198754;
+        }
+        &.kpi-orders {
+            border-left-color: #0d6efd;
+        }
+        &.kpi-production {
+            border-left-color: #0dcaf0;
+        }
+        &.kpi-loss {
+            border-left-color: #dc3545;
+        }
+    }
+}
+
+@media print {
+    .o_main_navbar,
+    .o_control_panel,
+    .o_all_reports_no_print {
+        display: none !important;
+    }
+
+    .o_all_reports_dashboard {
+        height: auto !important;
+        overflow: visible !important;
+        background: #ffffff !important;
+    }
+
+    .card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #dee2e6 !important;
+    }
+}

@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_all_reports_dashboard_user,all_reports.dashboard.user,all_reports.dashboard,all_reports.group_all_reports_user,r,
+access_all_reports_dashboard_manager,all_reports.dashboard.manager,all_reports.dashboard,all_reports.group_all_reports_manager,crud,

@@ -1,4 +1,5 @@
-from odoo import models, fields, api
+from odoo import models, fields
+
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
@@ -7,7 +8,7 @@ class ResUsers(models.Model):
         string="Access All Reports",
         compute="_compute_access_all_reports",
         inverse="_inverse_access_all_reports",
-        store=False
+        store=False,
     )
 
     def _compute_access_all_reports(self):
@@ -18,6 +19,6 @@ class ResUsers(models.Model):
         group = self.env.ref('all_reports.group_all_reports_user')
         for user in self:
             if user.access_all_reports:
-                user.sudo().write({'group_ids': [(4, group.id)]})
+                user.sudo().write({'group_ids': [fields.Command.link(group.id)]})
             else:
-                user.sudo().write({'group_ids': [(3, group.id)]})
+                user.sudo().write({'group_ids': [fields.Command.unlink(group.id)]})
