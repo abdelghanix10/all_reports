@@ -10,6 +10,7 @@ export class AllReportsDashboard extends Component {
     setup() {
         this.orm = useService("orm");
         this.action = useService("action");
+        this.notification = useService("notification");
 
         const today = this._formatDateISO(new Date());
 
@@ -67,6 +68,7 @@ export class AllReportsDashboard extends Component {
         this.state.loading = true;
         this.state.sessionsPage = 1;
         this.state.expandedSessions = {};
+        let hadError = false;
 
         try {
             const posConfigId = this.state.selectedPosConfig
@@ -80,9 +82,15 @@ export class AllReportsDashboard extends Component {
             this.state.data = result;
         } catch (e) {
             console.error("Error fetching dashboard data:", e);
+            hadError = true;
+            this.notification.add(
+                "Unable to refresh All Reports. Please check the server logs.",
+                { type: "danger", sticky: true }
+            );
         } finally {
             this.state.loading = false;
         }
+        return !hadError;
     }
 
     async setDatePreset(preset) {
@@ -229,7 +237,16 @@ export class AllReportsDashboard extends Component {
     }
 
     printReport() {
-        window.print();
+        if (this.state.loading) {
+            this.notification.add("Please wait until the report finishes loading.", {
+                type: "warning",
+            });
+            return;
+        }
+
+        requestAnimationFrame(() => {
+            window.print();
+        });
     }
 
     exportCSV() {

@@ -45,14 +45,14 @@
 
                     <!-- Actions: Refresh, Export CSV, Print -->
                     <div class="btn-group btn-group-sm o_all_reports_no_print">
-                        <button class="btn btn-outline-secondary" title="Refresh" t-on-click="() => this.fetchData()">
-                            <i class="fa fa-refresh"/>
+                        <button type="button" class="btn btn-outline-secondary" title="Refresh" t-on-click="() => this.fetchData()">
+                            <i class="fa fa-refresh me-1"/>Refresh
                         </button>
-                        <button class="btn btn-outline-success" title="Export CSV" t-on-click="() => this.exportCSV()">
+                        <button type="button" class="btn btn-outline-success" title="Export CSV" t-on-click="() => this.exportCSV()">
                             <i class="fa fa-download me-1"/>CSV
                         </button>
-                        <button class="btn btn-outline-dark" title="Print Report" t-on-click="() => this.printReport()">
-                            <i class="fa fa-print"/>
+                        <button type="button" class="btn btn-outline-dark" title="Print Report" t-on-click="() => this.printReport()">
+                            <i class="fa fa-print me-1"/>Print
                         </button>
                     </div>
                 </div>
